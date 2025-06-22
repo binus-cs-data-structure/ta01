@@ -21,10 +21,11 @@ public class Member extends User {
             switch (choice) {
                 case 1 -> searchBook(library);
                 case 2 -> borrowBook(library);
-                case 3 -> library.displayAllBooks();
-                case 4 -> library.displayAvailableBooks();
-                case 5 -> library.displayBorrowedBooks();
-                case 6 -> {
+                case 3 -> returnBook(library);
+                case 4 -> library.displayAllBooks();
+                case 5 -> library.displayAvailableBooks();
+                case 6 -> library.displayBorrowedBooks();
+                case 7 -> {
                     System.out.println("Member session ended.");
                     running = false;
                 }
@@ -37,10 +38,11 @@ public class Member extends User {
         System.out.println("\n=== MEMBER MENU ===");
         System.out.println("1. Search Book");
         System.out.println("2. Borrow Book");
-        System.out.println("3. Display All Books");
-        System.out.println("4. Display Available Books");
-        System.out.println("5. Display Borrowed Books");
-        System.out.println("6. Exit");
+        System.out.println("3. Return Book");
+        System.out.println("4. Display All Books");
+        System.out.println("5. Display Available Books");
+        System.out.println("6. Display Borrowed Books");
+        System.out.println("7. Exit");
         System.out.print("Choose option: ");
     }
 
@@ -60,6 +62,19 @@ public class Member extends User {
         boolean success = library.borrowBookByNumber(choice, Member.idMember);  // versi terbaru tanpa duplikat
         if (success) {
             System.out.println("Book borrowed successfully");
+        }
+    }
+
+    private void returnBook(LibrarySystem library) {    
+        library.displayAllBooks();
+        System.out.print("Choose option: ");
+        int choice = getUserChoice();
+
+        boolean success = library.returnBookByNumber(choice, Member.idMember);  // versi terbaru tanpa duplikat
+        if (success) {
+            System.out.println("Book return successfully");
+        } else {
+            System.out.println("Book return failed");
         }
     }
 

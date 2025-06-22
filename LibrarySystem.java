@@ -189,13 +189,17 @@ public class LibrarySystem {
 
     public boolean returnBookByNumber(int bookNumber, String userId) {
         int borrowedIndex = 0;
+        bookNumber = bookNumber - 1;
+        // System.out.println("Book Count : " + bookCount);
         for (int i = 0; i < bookCount; i++) {
             if (books[i] != null && !books[i].isAvailable() && userId.equals(books[i].getBorrowerId())) {
-                borrowedIndex++;
+                // System.out.println(">>> Borrowed Index : " + borrowedIndex);
+                // System.out.println(">>> Book number : " + bookNumber);
                 if (borrowedIndex == bookNumber) {
                     return books[i].returnBook(userId);
                 }
             }
+            borrowedIndex++;
         }
         return false;
     }
