@@ -3,11 +3,9 @@ import java.util.Scanner;
 public class Member extends User {
     private final Scanner scanner;
     private static String idMember = "MEM" + System.currentTimeMillis() % 1000;
-    private static String name;
 
     public Member(String name, Scanner scanner) {
         super(name, idMember, "Member");
-        Member.name = name;
         this.scanner = scanner;
     }
 
