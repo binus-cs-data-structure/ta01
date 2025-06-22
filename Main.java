@@ -29,7 +29,7 @@ public class Main {
                     loginAsAdmin(library, scanner);
                     break;
                 case 2:
-                    //loginAsMember(library, scanner);
+                    loginAsMember(library, scanner);
                     break;
                 case 3:
                     System.out.println("Thank you for using Library Management System ❣️");
@@ -75,5 +75,16 @@ public class Main {
     /**
      * Login sebagai Member
      */
-    
+        private static void loginAsMember(LibrarySystem library, Scanner scanner) {
+        System.out.print("Enter your name: ");
+        String name = scanner.nextLine();
+        
+        User user = new Member(name, scanner);
+        
+        System.out.println("\n=== MEMBER LOGIN SUCCESSFUL ===");
+        user.displayInfo();
+        
+        // Polymorphic method call - akan menjalankan Admin.interact()
+        user.interact(library);
+    }
 } 
